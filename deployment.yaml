@@ -2,19 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: python-app
+  name: calculator-app
+  labels:
+    app: calculator
 spec:
-  replicas: 2
+  replicas: 2 # Number of pod replicas
   selector:
     matchLabels:
-      app: python-app
+      app: calculator
   template:
     metadata:
       labels:
-        app: python-app
+        app: calculator
     spec:
       containers:
-      - name: python-app
-        image: <your-docker-registry>/<your-app>:<version>
+      - name: calculator
+        image: <your-dockerhub-username>/calculator:latest
         ports:
-        - containerPort: 5000
+        - containerPort: 5000 # Change to the port your app listens on
